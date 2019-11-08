@@ -10,6 +10,7 @@ matplotlib.use('Agg')
 
 def main():
     st.title('Assessing Best Model Features on the Boston Housing Set')
+    st.subheader('Created by: Stephan de Goede')
     @st.cache
     def load_data():
         boston = load_boston()
@@ -142,15 +143,13 @@ def main():
     st.write('Below is an interactive T-SNE cluster plot. If you drag your mouse whilst holding the left mouse button, characteristics of'
              ' all the features are automatically shown. Herewith one can get meaningfull insights of different groups in for example:'
              ' targeting and communication in a marketing context.')
-    st.write('Note that the target variable is binned here for better interpretability, each seperate color stand for a specific quantile,'
-             ' where red signals the highest 25% of median house values in Boston.')
+    st.write('Note that the target variable here is the sum of all the SHAP-values for that given datapoint. Furthermore, it is binned into 4 equal groups,for better interpretability. each seperate color stands for a specific group,'
+             ' where red signals the highest 25% of (predicted) median house values in Boston.')
     shap_embedded = TSNE(n_components=2, perplexity=25,random_state=34).fit_transform(shap_values)
-    # shap_embedded = TSNE(n_components=2, perplexity=35,random_state=34).fit_transform(shap_values)
     source=x_train.copy()
-    source.insert(len(source.columns), "TARGET", y_train)
     source.insert(len(source.columns), "TSNE-1", shap_embedded[:,0])
     source.insert(len(source.columns), "TSNE-2", shap_embedded[:,1])
-    source.insert(len(source.columns), "SHAP_C", shap_values.sum(1).astype(np.float64))
+    source.insert(len(source.columns), "TARGET", shap_values.sum(1).astype(np.float64))
     bins = [0,25, 50, 75, 100]
     labels = ['lowest 25%','25 to 50%','50-75%','highest 25%']
     source['TARGET_BINNED'] = pd.cut(source['TARGET'], bins=4,labels=labels).astype(str)
