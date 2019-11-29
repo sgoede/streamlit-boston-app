@@ -111,8 +111,9 @@ def main():
     st.write(  'This yields to a predicted value of median house value of:'+str(expectation)+' + '+str(sum(shap_values[individual,:]))+
                '= '+str(expectation+(sum(shap_values[individual,:]))))
     st.write('Which features caused this specific prediction? features in red increased the prediction, in blue decreased them')
-    shap.force_plot(explainer.expected_value, shap_values[individual,:],x_train.iloc[individual,:],matplotlib=True,show=False)
-    st.pyplot()
+    shap.force_plot(explainer.expected_value, shap_values[individual,:],x_train.iloc[individual,:],matplotlib=True,show=False
+                    ,figsize=(16,5))
+    st.pyplot(bbox_inches='tight',dpi=300,pad_inches=0)
     pl.clf()
     st.write('In the plot above, the feature values are shown. The SHAP values are represented by the length of the specific bar.'
              'However, it is not quite clear what each single SHAP value is exactly, this can be seen below, if wanted.')
