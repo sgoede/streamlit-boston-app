@@ -29,7 +29,7 @@ more-itertools==7.2.0
 numpy==1.17.3
 pandas==0.25.3
 pathtools==0.1.2
-Pillow==8.1.1
+Pillow==8.3.2
 protobuf==3.10.0
 pyparsing==2.4.4
 pyrsistent==0.15.5
