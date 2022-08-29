@@ -26,7 +26,7 @@ kiwisolver==1.1.0
 MarkupSafe==1.1.1
 matplotlib==3.0.3
 more-itertools==7.2.0
-numpy==1.19.5
+numpy==1.22.0
 pandas==0.25.3
 pathtools==0.1.2
 Pillow==8.4.0
