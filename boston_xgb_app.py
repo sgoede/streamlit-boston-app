@@ -11,6 +11,7 @@ matplotlib.use('Agg')
 def main():
     st.title('Assessing Best Model Features on the Boston Housing Set')
     st.subheader('Created by: Stephan de Goede')
+    st.subheader('This website will go offline on 11-28, please check my Github (https:// github.com/sgoede/streamlit-boston-app to check for a new deployed version of the app')
     @st.cache
     def load_data():
         boston = load_boston()
